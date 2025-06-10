@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+# individual add 
+/.idea
+/.idea/codeStyles
+key.properties

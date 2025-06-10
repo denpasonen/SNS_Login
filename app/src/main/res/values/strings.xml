@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SNS Login</string>
+    <string name="kakaoLogin">Login with Kakao</string>
 </resources>

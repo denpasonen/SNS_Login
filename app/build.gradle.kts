@@ -1,7 +1,13 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+}
+
+val properties = Properties().apply {
+    load(rootProject.file("key.properties").inputStream())
 }
 
 android {
@@ -14,6 +20,9 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "kakaoNativeKey", properties["kakaoNativeKey"].toString())
+        manifestPlaceholders["kakaoNativeKey"] = properties["kakaoNativeKey"].toString()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -56,4 +66,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // ext.lib
+    implementation(libs.kakao.user)
+    implementation(libs.kakao.share)
+
 }
